@@ -1,0 +1,60 @@
+export const reviews = [
+  {
+    id: "r1",
+    productId: "p1",
+    customerName: "Priya Sharma",
+    rating: 5,
+    date: "2 weeks ago",
+    comment:
+      "Tastes exactly like my grandmother's pickle. The mustard oil ratio is perfect and it isn't overly salty like the store-bought ones.",
+  },
+  {
+    id: "r2",
+    productId: "p1",
+    customerName: "Arjun Verma",
+    rating: 5,
+    date: "1 month ago",
+    comment:
+      "Ordered a second jar within a week of the first. Packaging was neat and it arrived without any leakage.",
+  },
+  {
+    id: "r3",
+    productId: "p1",
+    customerName: "Neha Gupta",
+    rating: 4,
+    date: "1 month ago",
+    comment: "Delicious and authentic, though I'd have liked a slightly smaller jar option too.",
+  },
+  {
+    id: "r4",
+    productId: "p3",
+    customerName: "Rohit Malhotra",
+    rating: 5,
+    date: "3 days ago",
+    comment: "Ordered for my daughter's birthday and everyone asked where it was from. Incredibly moist and not too sweet.",
+  },
+  {
+    id: "r5",
+    productId: "p3",
+    customerName: "Simran Kaur",
+    rating: 5,
+    date: "2 weeks ago",
+    comment: "Best eggless cake I've had in Prayagraj. Will definitely order again for our anniversary.",
+  },
+  {
+    id: "r6",
+    productId: "p9",
+    customerName: "Anjali Mishra",
+    rating: 5,
+    date: "1 week ago",
+    comment: "The embroidery work is stunning up close, you can tell it's genuinely handmade. Fits true to size.",
+  },
+  {
+    id: "r7",
+    productId: "p11",
+    customerName: "Karan Tiwari",
+    rating: 5,
+    date: "5 days ago",
+    comment: "Beautiful glaze and the handle is really comfortable. Feels like a proper studio piece, not mass produced.",
+  },
+];
