@@ -26,6 +26,7 @@ export const getCustomerStats = asyncHandler(async (req, res) => {
 export const getMyReviews = asyncHandler(async (req, res) => {
   const reviews = await Review.find({ user: req.user._id })
     .sort({ createdAt: -1 })
+    .populate("user", "name profileImage")
     .populate("product", "name image images");
 
   res.json({
