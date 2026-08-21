@@ -78,7 +78,7 @@ export const api = {
   getMyOrders: () => request("/orders/my-orders"),
 
   getCustomerStats: () => request("/customer/stats"),
-
+  getMyReviews: () => request("/customer/reviews"),
   getSellerProducts: () => request("/seller/products"),
   getSellerOrders: () => request("/seller/orders"),
   getSellerStats: () => request("/seller/stats"),

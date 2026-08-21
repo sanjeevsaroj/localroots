@@ -16,6 +16,7 @@ export function AppProvider({ children }) {
     }
   });
   const [customerOrders, setCustomerOrders] = useState([]);
+  const [customerReviews, setCustomerReviews] = useState([]);
   const [sellerOrders, setSellerOrders] = useState([]);
   const [sellerProducts, setSellerProducts] = useState([]);
   const [sellerStats, setSellerStats] = useState(null);
@@ -80,14 +81,19 @@ export function AppProvider({ children }) {
     setCartCount(normalized.cartCount);
   }
 
-  async function refreshCustomerData() {
-    await Promise.all([
-      refreshCart(),
-      api.getMyOrders().then((res) => {
-        setCustomerOrders((res.data.orders || []).map(normalizeOrder));
-      }),
-    ]);
-  }
+ async function refreshCustomerData() {
+  await Promise.all([
+    refreshCart(),
+
+    api.getMyOrders().then((res) => {
+      setCustomerOrders((res.data.orders || []).map(normalizeOrder));
+    }),
+
+    api.getMyReviews().then((res) => {
+      setCustomerReviews(res.data.reviews || []);
+    }),
+  ]);
+}
 
   async function refreshSellerData() {
     const [productsRes, ordersRes, statsRes] = await Promise.all([
@@ -134,6 +140,7 @@ export function AppProvider({ children }) {
     setCartTotal(0);
     setCartCount(0);
     setCustomerOrders([]);
+    setCustomerReviews([]);
     setSellerOrders([]);
     setSellerProducts([]);
     setSellerStats(null);
@@ -256,6 +263,7 @@ export function AppProvider({ children }) {
     toggleWishlist,
 
     customerOrders,
+    customerReviews,
     placeOrder,
 
     sellerOrders,

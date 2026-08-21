@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import { useApp } from "../context/CartContext.jsx";
-import { reviews } from "../data/reviews.js";
+
 
 import OrderCard from "../components/OrderCard.jsx";
 import ProductCard from "../components/ProductCard.jsx";
@@ -28,12 +28,13 @@ const TABS = [
 
 export default function Dashboard() {
   const {
-    customerOrders,
-    wishlist,
-    products,
-    user,
-    updateUser,
-  } = useApp();
+  customerOrders,
+  customerReviews,
+  wishlist,
+  products,
+  user,
+  updateUser,
+} = useApp();
 
   const [tab, setTab] = useState("overview");
 
@@ -68,7 +69,7 @@ export default function Dashboard() {
     wishlist.includes(p.id)
   );
 
-  const myReviews = reviews.slice(0, 3);
+  const myReviews = customerReviews;
 
   function handleProfileChange(e) {
     const { name, value } = e.target;
@@ -334,17 +335,25 @@ export default function Dashboard() {
           )}
 
           {tab === "reviews" && (
-            <>
-              <h2>My Reviews</h2>
+  <>
+    <h2>My Reviews</h2>
 
-              {myReviews.map((r) => (
-                <ReviewCard
-                  key={r.id}
-                  review={r}
-                />
-              ))}
-            </>
-          )}
+    {myReviews.length === 0 ? (
+      <div className="empty-state">
+        <Star size={48} strokeWidth={1.2} />
+        <h3>No reviews yet</h3>
+        <p>Reviews you submit for delivered products will appear here.</p>
+      </div>
+    ) : (
+      myReviews.map((review) => (
+        <ReviewCard
+          key={review._id || review.id}
+          review={review}
+        />
+      ))
+    )}
+  </>
+)}
 
           {tab === "profile" && (
             <>
