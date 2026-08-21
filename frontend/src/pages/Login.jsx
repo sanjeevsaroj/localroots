@@ -11,11 +11,11 @@ export default function Login() {
   const [mode, setMode] = useState("login");
   const [form, setForm] = useState({
     name: "",
-    email: "customer@localroots.com",
-    password: "password123",
+    email: "",
+    password: "",
     phone: "",
     role: "customer",
-    city: "Prayagraj",
+    city: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -104,11 +104,7 @@ export default function Login() {
           {mode === "login" ? <><LogIn size={16} /> {loading ? "Logging in..." : "Log in"}</> : <><UserPlus size={16} /> {loading ? "Creating..." : "Create account"}</>}
         </button>
 
-        {mode === "login" && (
-          <p style={{ fontSize: 13, color: "var(--ink-soft)", marginTop: 14 }}>
-            Demo customer: <strong>customer@localroots.com</strong> / <strong>password123</strong>
-          </p>
-        )}
+        
 
         <button
           type="button"
