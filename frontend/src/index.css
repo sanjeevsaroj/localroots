@@ -1796,11 +1796,18 @@ input, select, textarea {
   margin-bottom: 12px;
 }
 
-.dash-profile img {
+.profile-initial {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  background: var(--clay);
+  color: white;
+  flex-shrink: 0;
 }
 
 .dash-profile strong {

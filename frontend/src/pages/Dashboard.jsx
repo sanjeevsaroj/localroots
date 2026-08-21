@@ -106,13 +106,9 @@ export default function Dashboard() {
       <div className="dash-layout" style={{ marginTop: 26 }}>
         <aside className="dash-sidebar">
           <div className="dash-profile">
-            <img
-              src={
-                user?.profileImage ||
-                "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop"
-              }
-              alt={user?.name || "Customer"}
-            />
+            <div className="profile-initial">
+              {(user?.name || "C").charAt(0).toUpperCase()}
+            </div>
 
             <div>
               <strong>{user?.name || "Customer"}</strong>
