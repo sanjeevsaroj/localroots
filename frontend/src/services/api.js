@@ -35,6 +35,12 @@ export const api = {
 
   me: () => request("/auth/me"),
 
+  updateProfile: (body) =>
+  request("/auth/profile", {
+    method: "PUT",
+    body: JSON.stringify(body),
+  }),
+
   getProducts: (params = {}) => {
     const search = new URLSearchParams({ limit: "100" });
     Object.entries(params).forEach(([key, value]) => {

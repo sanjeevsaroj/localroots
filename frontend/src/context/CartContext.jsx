@@ -111,6 +111,20 @@ export function AppProvider({ children }) {
     if (currentUser.role === "customer") refreshCustomerData();
     if (currentUser.role === "seller") refreshSellerData();
   }
+  
+  async function updateUser(profileData) {
+  const res = await api.updateProfile(profileData);
+  const updatedUser = res.data.user;
+
+  setUser(updatedUser);
+
+  localStorage.setItem(
+    "localroots_user",
+    JSON.stringify(updatedUser)
+  );
+
+  return updatedUser;
+ }
 
   function logout() {
     localStorage.removeItem("localroots_token");
@@ -221,6 +235,7 @@ export function AppProvider({ children }) {
     authLoading,
     loginSuccess,
     logout,
+    updateUser,
     loadProducts,
     refreshCart,
     refreshCustomerData,
