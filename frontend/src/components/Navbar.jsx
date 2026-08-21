@@ -29,7 +29,7 @@ export default function Navbar() {
           <span className="brand-mark">
             <Sprout size={20} />
           </span>
-          DHAAGA
+          LocalRoots
         </Link>
 
         <nav className="nav-links">
