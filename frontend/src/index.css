@@ -1412,6 +1412,20 @@ input, select, textarea {
   flex-shrink: 0;
 }
 
+.seller-initial {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 28px;
+  background: var(--clay);
+  color: white;
+}
+
 .seller-panel-info {
   flex: 1;
 }

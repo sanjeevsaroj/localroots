@@ -156,7 +156,7 @@ export default function ProductDetails() {
           <SellerCard seller={{
             id: seller._id,
             name: seller.storeName || seller.name,
-            avatar: seller.profileImage || "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+            avatar: seller.profileImage || "",
             location: seller.location?.city || product.city,
             distance: product.distance || "",
             rating: product.rating || 0,

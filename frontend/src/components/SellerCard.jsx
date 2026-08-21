@@ -2,18 +2,49 @@ import { MapPin } from "lucide-react";
 import Rating from "./Rating.jsx";
 
 export default function SellerCard({ seller }) {
+  const initial = (seller.name || "S").charAt(0).toUpperCase();
+
   return (
     <div className="card seller-panel">
-      <img src={seller.avatar} alt={seller.name} />
+      {seller.avatar ? (
+        <img src={seller.avatar} alt={seller.name} />
+      ) : (
+        <div className="seller-initial">{initial}</div>
+      )}
+
       <div className="seller-panel-info">
         <h4>{seller.name}</h4>
+
         <p>
-          <MapPin size={12} style={{ display: "inline", marginRight: 4, verticalAlign: -2 }} />
-          {seller.location} · {seller.distance}
+          <MapPin
+            size={12}
+            style={{
+              display: "inline",
+              marginRight: 4,
+              verticalAlign: -2,
+            }}
+          />
+          {seller.location}
+          {seller.distance ? ` · ${seller.distance}` : ""}
         </p>
-        <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 10 }}>
+
+        <div
+          style={{
+            marginTop: 8,
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
           <Rating value={seller.rating} count={seller.reviewCount} />
-          <span style={{ fontSize: 12.5, color: "var(--ink-faint)" }}>Since {seller.joined}</span>
+          <span
+            style={{
+              fontSize: 12.5,
+              color: "var(--ink-faint)",
+            }}
+          >
+            Since {seller.joined}
+          </span>
         </div>
       </div>
     </div>
