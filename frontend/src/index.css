@@ -2125,18 +2125,16 @@ table.data-table {
     padding: 0 12px;
   }
 
-  /* Hero visual */
-  .hero-visual {
+  /* Hero */
+  .hero,
+  .hero-grid {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
   }
 
-  .hero-visual-main {
-    max-width: 100%;
-  }
-
-  .hero-visual-card {
-    max-width: 90%;
+  /* Hide desktop visual on mobile */
+  .hero-visual {
+    display: none;
   }
 }
