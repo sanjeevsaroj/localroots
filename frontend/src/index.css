@@ -2111,3 +2111,8 @@ table.data-table {
     padding-right: 16px;
   }
 }
+@media (max-width: 600px) {
+  * {
+    outline: 1px solid red;
+  }
+}
