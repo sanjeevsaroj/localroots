@@ -82,25 +82,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-visual">
-            <span className="stamp hero-visual-tag">✓ Verified homemade</span>
-            <div className="hero-visual-main">
-              <img
-                src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&h=1100&fit=crop"
-                alt="Homemade pickles and preserves in glass jars"
-              />
-            </div>
-            <div className="hero-visual-card">
-              <img
-                src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&h=200&fit=crop"
-                alt="Eggless chocolate cake"
-              />
-              <div>
-                <div className="hvc-title">Meena's Bake House</div>
-                <div className="hvc-sub">2.5 km away · 4.9★ rating</div>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div className="scallop-divider" style={{ marginTop: 56 }} />
       </section>
