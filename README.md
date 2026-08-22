@@ -116,7 +116,7 @@ Make sure the following are installed:
 ## 1. Clone the Repository
 
 ```bash
-git clone <https://github.com/sanjeevsaroj/localroots.git >
+git clone https://github.com/sanjeevsaroj/localroots.git
 cd LocalRoots
 ```
 
