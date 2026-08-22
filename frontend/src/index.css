@@ -2131,3 +2131,32 @@ table.data-table {
   /* Hero visual - scrollable on mobile */
  
 }
+@media (max-width: 600px) {
+
+  .hero {
+    overflow-x: hidden;
+  }
+
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .hero-visual {
+    width: 100%;
+    min-height: 380px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .hero-visual-main {
+    width: 78%;
+    right: 10%;
+  }
+
+  .hero-visual-card {
+    left: 10px;
+    width: 62%;
+  }
+}
