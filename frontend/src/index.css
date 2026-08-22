@@ -34,11 +34,7 @@
 * {
   box-sizing: border-box;
 }
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
+
 html {
   scroll-behavior: smooth;
 }
@@ -494,6 +490,9 @@ input, select, textarea {
 }
 
 @media (max-width: 980px) {
+  .navbar-inner {
+  gap: 8px;
+ }
   .nav-links, .nav-search-inline {
     display: none;
   }
