@@ -168,42 +168,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURED SELLERS */}
-      <section className="section" style={{ background: "var(--cream-2)" }}>
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <span className="eyebrow">Meet the makers</span>
-              <h2>Sellers near Prayagraj</h2>
-            </div>
-          </div>
-          <div className="why-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
-            {sellers.slice(0, 3).map((seller) => (
-              <div className="card" key={seller.id} style={{ padding: 22 }}>
-                <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-                  <img
-                    src={seller.avatar}
-                    alt={seller.name}
-                    style={{ width: 58, height: 58, borderRadius: "50%", objectFit: "cover" }}
-                  />
-                  <div>
-                    <div style={{ fontWeight: 700, color: "var(--forest-dark)" }}>{seller.name}</div>
-                    <div style={{ fontSize: 12.5, color: "var(--ink-soft)", marginTop: 3 }}>
-                      {seller.location}
-                    </div>
-                  </div>
-                </div>
-                <p style={{ fontSize: 13.5, color: "var(--ink-soft)", marginTop: 14, lineHeight: 1.6 }}>
-                  {seller.bio}
-                </p>
-                <span className="stamp" style={{ marginTop: 14 }}>
-                  <Sparkles size={13} /> {seller.rating}★ · {seller.reviewCount} reviews
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
     </div>
   );
 }
