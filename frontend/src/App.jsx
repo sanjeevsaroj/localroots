@@ -12,6 +12,7 @@ import OrderSuccess from "./pages/OrderSuccess.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Seller from "./pages/Seller.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
+import EditProduct from "./pages/EditProduct.jsx";
 import Login from "./pages/Login.jsx";
 
 function ScrollToTop() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/seller" element={<Seller />} />
           <Route path="/seller/products/new" element={<AddProduct />} />
+          <Route path="/seller/products/edit/:id" element={<EditProduct />} />
         </Routes>
       </main>
       <Footer />

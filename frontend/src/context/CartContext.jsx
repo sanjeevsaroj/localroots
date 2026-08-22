@@ -226,6 +226,23 @@ export function AppProvider({ children }) {
     await refreshSellerData();
     return product;
   }
+  
+  async function updateProduct(id, formData) {
+  const res = await api.updateProduct(id, formData);
+  const product = normalizeProduct(res.data.product);
+
+  setProducts((prev) =>
+    prev.map((p) => (p.id === id ? product : p))
+  );
+
+  setSellerProducts((prev) =>
+    prev.map((p) => (p.id === id ? product : p))
+  );
+
+  await refreshSellerData();
+
+  return product;
+}
 
   async function deleteProduct(id) {
     await api.deleteProduct(id);
@@ -249,6 +266,7 @@ export function AppProvider({ children }) {
     refreshSellerData,
 
     addProduct,
+    updateProduct,
     deleteProduct,
 
     cart,
