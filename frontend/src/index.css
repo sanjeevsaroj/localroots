@@ -2126,15 +2126,11 @@ table.data-table {
   }
 
   /* Hero */
-  .hero,
-  .hero-grid {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-  }
-
-  /* Hide desktop visual on mobile */
-  .hero-visual {
-    display: none;
-  }
+  /* Hero visual - scrollable on mobile */
+ .hero-visual {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  max-width: 100%;
+ }
 }
