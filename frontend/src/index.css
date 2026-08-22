@@ -2112,7 +2112,31 @@ table.data-table {
   }
 }
 @media (max-width: 600px) {
-  * {
-    outline: 1px solid red;
+  /* Navbar */
+  .navbar,
+  .navbar-inner {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .navbar-inner {
+    gap: 6px;
+    padding: 0 12px;
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-visual-main {
+    max-width: 100%;
+  }
+
+  .hero-visual-card {
+    max-width: 90%;
   }
 }
