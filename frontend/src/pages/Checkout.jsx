@@ -60,7 +60,7 @@ export default function Checkout() {
         address,
         paymentMethod: payment === "cod" ? "COD" : "DEMO_ONLINE",
       });
-      navigate("/order-success", { state: { orderId: order.id } });
+      navigate("/order-success", { state: { order } });
     } catch (error) {
       window.alert(error.message);
     } finally {

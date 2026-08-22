@@ -8,8 +8,7 @@ export default function OrderSuccess() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const orderId = location.state?.orderId;
-  const order = customerOrders.find((o) => o.id === orderId) || customerOrders[0];
+ const order = location.state?.order || customerOrders[0];
 
   if (!order) {
     return (
