@@ -714,6 +714,8 @@ input, select, textarea {
   .hero-visual {
     min-height: 320px;
     margin-top: 20px;
+    width: 100%;
+    overflow: hidden;
   }
   .hero-search {
     flex-direction: column;
@@ -2127,10 +2129,5 @@ table.data-table {
 
   /* Hero */
   /* Hero visual - scrollable on mobile */
- .hero-visual {
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: 100%;
-  max-width: 100%;
- }
+ 
 }
