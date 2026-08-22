@@ -10,7 +10,7 @@ import ProductCard from "../components/ProductCard.jsx";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const { products, addToCart } = useApp();
+  const { products, addToCart, user, customerOrders, refreshCustomerData } = useApp();
   const navigate = useNavigate();
   const productFromList = products.find((p) => p.id === id);
   const [product, setProduct] = useState(productFromList || null);
@@ -18,6 +18,10 @@ export default function ProductDetails() {
   const [qty, setQty] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [loading, setLoading] = useState(!productFromList);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewComment, setReviewComment] = useState("");
+  const [reviewError, setReviewError] = useState("");
+  const [reviewLoading, setReviewLoading] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -45,6 +49,17 @@ export default function ProductDetails() {
 
     return () => { alive = false; };
   }, [id]);
+
+  const reviewOrder =
+  user?.role === "customer"
+    ? customerOrders.find((order) =>
+        order.products?.some(
+          (item) =>
+            item.productId === product?.id &&
+            item.status === "Delivered"
+        )
+      )
+    : null;
 
   if (loading && !product) {
     return <div className="container empty-state"><h3>Loading product...</h3></div>;
@@ -81,6 +96,49 @@ export default function ProductDetails() {
       window.alert(error.message);
     }
   }
+  
+  async function handleSubmitReview(e) {
+  e.preventDefault();
+
+  if (!reviewOrder) {
+    setReviewError("You can only review this product after it has been delivered.");
+    return;
+  }
+
+  setReviewError("");
+  setReviewLoading(true);
+
+  try {
+    await api.createReview(product.id, {
+      rating: reviewRating,
+      comment: reviewComment,
+      orderId: reviewOrder.id,
+    });
+
+    setReviewComment("");
+
+    // Reload reviews so the new review appears immediately
+    const res = await api.getReviews(product.id);
+
+    setReviews(
+      (res.data.reviews || []).map((r) => ({
+        ...r,
+        id: r._id,
+        customerName: r.user?.name || "Customer",
+        date: r.createdAt
+          ? new Date(r.createdAt).toLocaleDateString("en-IN")
+          : "",
+      }))
+    );
+
+    // Refresh dashboard/order data
+    await refreshCustomerData();
+  } catch (error) {
+    setReviewError(error.message);
+  } finally {
+    setReviewLoading(false);
+  }
+}
 
   return (
     <div className="container">
@@ -168,14 +226,65 @@ export default function ProductDetails() {
         )}
       </div>
 
-      <div className="section" style={{ paddingTop: 0 }}>
-        <h2 className="pd-section-title">Customer Reviews</h2>
-        {reviews.length === 0 ? (
-          <p style={{ color: "var(--ink-soft)" }}>No reviews yet for this product.</p>
-        ) : (
-          reviews.map((r) => <ReviewCard key={r.id} review={r} />)
-        )}
+     <div className="section" style={{ paddingTop: 0 }}>
+  <h2 className="pd-section-title">Customer Reviews</h2>
+
+  {reviewOrder && (
+    <form
+      className="card form-card"
+      style={{ marginBottom: 20 }}
+      onSubmit={handleSubmitReview}
+    >
+      <h3 style={{ marginTop: 0 }}>Leave a Review</h3>
+
+      {reviewError && (
+        <p style={{ color: "var(--clay)" }}>{reviewError}</p>
+      )}
+
+      <div className="form-field" style={{ marginTop: 14 }}>
+        <label>Rating</label>
+        <select
+          value={reviewRating}
+          onChange={(e) => setReviewRating(Number(e.target.value))}
+        >
+          <option value={5}>★★★★★ — 5</option>
+          <option value={4}>★★★★ — 4</option>
+          <option value={3}>★★★ — 3</option>
+          <option value={2}>★★ — 2</option>
+          <option value={1}>★ — 1</option>
+        </select>
       </div>
+
+      <div className="form-field" style={{ marginTop: 14 }}>
+        <label>Comment</label>
+        <textarea
+          value={reviewComment}
+          onChange={(e) => setReviewComment(e.target.value)}
+          placeholder="Share your experience with this product..."
+          rows={4}
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="btn btn-primary"
+        style={{ marginTop: 16 }}
+        disabled={reviewLoading}
+      >
+        {reviewLoading ? "Submitting..." : "Submit Review"}
+      </button>
+    </form>
+  )}
+
+  {reviews.length === 0 ? (
+    <p style={{ color: "var(--ink-soft)" }}>
+      No reviews yet for this product.
+    </p>
+  ) : (
+    reviews.map((r) => <ReviewCard key={r.id} review={r} />)
+  )}
+</div>
 
       {related.length > 0 && (
         <div className="section" style={{ paddingTop: 0 }}>
