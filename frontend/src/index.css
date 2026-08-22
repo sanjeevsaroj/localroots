@@ -2104,3 +2104,10 @@ table.data-table {
 .text-center { text-align: center; }
 .mt-0 { margin-top: 0; }
 .flex-center { display: flex; align-items: center; justify-content: center; }
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
