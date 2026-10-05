@@ -2129,3 +2129,447 @@ table.data-table {
   /* Hero visual - scrollable on mobile */
  
 }
+/* ===================== Admin Dashboard ===================== */
+
+.admin-page {
+  padding-top: 48px;
+}
+
+.admin-section-head {
+  align-items: flex-end;
+}
+
+.admin-title {
+  font-size: clamp(30px, 4vw, 42px);
+  margin-top: 8px;
+}
+
+.admin-subtitle {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  max-width: 560px;
+}
+
+.admin-error {
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  border-radius: var(--radius-sm);
+  background: #f4dede;
+  color: var(--clay);
+  border: 1px solid rgba(168, 69, 47, 0.2);
+  font-weight: 600;
+}
+
+/* ===================== Stats ===================== */
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.admin-stat-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-stat-highlight {
+  background: var(--forest);
+  border-color: var(--forest);
+}
+
+.admin-stat-highlight .eyebrow,
+.admin-stat-highlight .admin-stat-text {
+  color: rgba(250, 243, 230, 0.75);
+}
+
+.admin-stat-number {
+  font-family: var(--font-display);
+  font-size: 30px;
+  color: var(--forest-dark);
+}
+
+.admin-stat-highlight .admin-stat-number {
+  color: var(--cream);
+}
+
+.admin-stat-text {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+/* ===================== Product Grid ===================== */
+
+.admin-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+/* ===================== Product Card ===================== */
+
+.admin-product-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.admin-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===================== Product Image ===================== */
+
+.admin-product-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--cream-2);
+  overflow: hidden;
+}
+
+.admin-product-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.admin-product-card:hover .admin-product-image {
+  transform: scale(1.04);
+}
+
+.admin-no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-faint);
+  font-size: 14px;
+}
+
+.admin-status {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+}
+
+/* ===================== Product Body ===================== */
+
+.admin-product-body {
+  padding: 20px;
+}
+
+.admin-product-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.admin-product-heading h2 {
+  font-size: 21px;
+  margin-top: 5px;
+}
+
+.admin-category {
+  color: var(--forest-light);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.admin-price {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--forest-dark);
+  white-space: nowrap;
+}
+
+.admin-description {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-top: 10px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===================== Product Info ===================== */
+
+.admin-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.admin-info-grid > div {
+  padding: 10px 12px;
+  background: var(--cream);
+}
+
+.admin-info-grid > div:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+
+.admin-info-grid > div:nth-child(-n + 2) {
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-info-grid span {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 11.5px;
+  margin-bottom: 2px;
+}
+
+.admin-info-grid strong {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+/* ===================== Seller ===================== */
+
+.admin-seller {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 15px 0;
+  margin-top: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-seller-avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--clay);
+  color: var(--white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.admin-seller > div:last-child {
+  min-width: 0;
+}
+
+.admin-seller-label {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.admin-seller strong {
+  display: block;
+  color: var(--forest-dark);
+  font-size: 14px;
+}
+
+.admin-seller small {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 12px;
+  margin-top: 1px;
+  overflow-wrap: anywhere;
+}
+
+/* ===================== Actions ===================== */
+
+.admin-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.admin-actions .btn {
+  padding: 10px 14px;
+  font-size: 13.5px;
+}
+
+.admin-reject-btn {
+  border: 1.5px solid var(--clay);
+  border-radius: var(--radius-pill);
+}
+
+/* ===================== Empty State ===================== */
+
+.admin-empty {
+  text-align: center;
+  padding: 70px 24px;
+}
+
+.admin-empty-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--cream-2);
+  color: var(--forest);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.admin-empty h2 {
+  font-size: 26px;
+}
+
+.admin-empty p {
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+/* ===================== Tablet ===================== */
+
+@media (max-width: 1050px) {
+  .admin-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ===================== Mobile ===================== */
+
+@media (max-width: 700px) {
+  .admin-page {
+    padding-top: 32px;
+  }
+
+  .admin-section-head {
+    align-items: flex-start;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-product-image-wrap {
+    aspect-ratio: 16 / 10;
+  }
+
+  .admin-product-heading {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .admin-price {
+    font-size: 19px;
+  }
+}
+
+/* ===================== Small Mobile ===================== */
+
+@media (max-width: 420px) {
+  .admin-product-body {
+    padding: 16px;
+  }
+
+  .admin-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-product-image-wrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .admin-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-info-grid > div:nth-child(odd) {
+    border-right: none;
+  }
+
+  .admin-info-grid > div:nth-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .admin-info-grid > div:not(:last-child) {
+    border-bottom: 1px solid var(--line);
+  }
+}
+/* Seller product moderation */
+
+.seller-product-status {
+  min-width: 180px;
+}
+
+.seller-rejection-reason {
+  margin-top: 8px;
+  padding: 9px 11px;
+  background: #f4dede;
+  border: 1px solid rgba(168, 69, 47, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--clay);
+  font-size: 12px;
+  line-height: 1.45;
+  max-width: 240px;
+}
+
+.seller-rejection-reason strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+.seller-rejection-reason span {
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+.dashboard-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .dashboard-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard-page-header .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

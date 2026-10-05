@@ -127,12 +127,29 @@ export default function Seller() {
               </div>
               <div className="data-table-wrap">
                 <table className="data-table">
-                  <thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>Rating</th><th>Actions</th></tr></thead>
+                  <thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>Rating</th><th>Status</th><th>Actions</th></tr></thead>
                   <tbody>
                     {sellerProducts.map((p) => (
                       <tr key={p.id}>
                         <td><div className="table-product-cell"><img src={p.image} alt={p.name} /><span>{p.name}</span></div></td>
-                        <td>₹{p.price}</td><td>{p.stock}</td><td><Rating value={p.rating} /></td>
+                        <td>₹{p.price}</td><td>{p.stock}</td><td><Rating value={p.rating} /></td><td>
+  <div className="seller-product-status">
+    <span className={`status-badge status-${p.status}`}>
+      {p.status === "pending"
+        ? "Pending Approval"
+        : p.status === "approved"
+        ? "Approved"
+        : "Rejected"}
+    </span>
+
+    {p.status === "rejected" && p.rejectionReason && (
+      <div className="seller-rejection-reason">
+        <strong>Admin's reason:</strong>
+        <span>{p.rejectionReason}</span>
+      </div>
+    )}
+  </div>
+</td>
                         <td>
                           <div style={{ display: "flex", gap: 8 }}>
                             <button type="button" className="icon-btn" style={{ width: 34, height: 34 }} onClick={() => navigate(`/seller/products/edit/${p.id}`)} aria-label="Edit product"><Pencil size={14} /></button>

@@ -72,7 +72,11 @@ export default function AddProduct() {
 
   return (
     <div className="container">
-      {showSuccess && <div className="success-toast"><CheckCircle2 size={18} /> Product added successfully!</div>}
+      {showSuccess && (
+  <div className="success-toast">
+    <CheckCircle2 size={18} /> Product submitted successfully! Waiting for admin approval.
+  </div>
+)}
 
       <div className="breadcrumb" style={{ marginTop: 24 }}>
         <Link to="/seller">Seller Dashboard</Link><ChevronRight size={13} /><span>Add Product</span>
@@ -80,7 +84,9 @@ export default function AddProduct() {
 
       <div className="page-header" style={{ paddingTop: 8 }}>
         <h1>Add a New Product</h1>
-        <p style={{ color: "var(--ink-soft)", marginTop: 6 }}>Publish a real product to the LocalRoots marketplace.</p>
+        <p style={{ color: "var(--ink-soft)", marginTop: 6 }}>
+  Submit your product for admin verification before it appears on the marketplace.
+</p>
       </div>
 
       <form className="add-product-wrap" style={{ marginTop: 24 }} onSubmit={handleSubmit}>
@@ -111,7 +117,7 @@ export default function AddProduct() {
           </div>
 
           <button type="submit" className="btn btn-primary btn-block" style={{ marginTop: 10 }} disabled={submitting}>
-            {submitting ? "Publishing..." : "Add Product"}
+           {submitting ? "Submitting..." : "Submit for Approval"}
           </button>
         </div>
       </form>

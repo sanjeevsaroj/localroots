@@ -9,6 +9,7 @@ import {
   ShoppingBag,
   Clock,
   CheckCircle,
+  ClipboardCheck,
 } from "lucide-react";
 
 import { useApp } from "../context/CartContext.jsx";
@@ -96,13 +97,22 @@ export default function Dashboard() {
 
   return (
     <div className="container">
-      <div className="page-header">
-        <h1>My Dashboard</h1>
+      <div className="page-header dashboard-page-header">
+  <div>
+    <h1>My Dashboard</h1>
 
-        <p style={{ color: "var(--ink-soft)", marginTop: 6 }}>
-          Welcome back, {user?.name || "Customer"}!
-        </p>
-      </div>
+    <p style={{ color: "var(--ink-soft)", marginTop: 6 }}>
+      Welcome back, {user?.name || "Customer"}!
+    </p>
+  </div>
+
+  {user?.role === "admin" && (
+    <Link to="/admin" className="btn btn-primary">
+      <ClipboardCheck size={17} />
+      Product Approvals
+    </Link>
+  )}
+</div>
 
       <div className="dash-layout" style={{ marginTop: 26 }}>
         <aside className="dash-sidebar">

@@ -14,6 +14,7 @@ import Seller from "./pages/Seller.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
 import EditProduct from "./pages/EditProduct.jsx";
 import Login from "./pages/Login.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/seller" element={<Seller />} />
           <Route path="/seller/products/new" element={<AddProduct />} />
           <Route path="/seller/products/edit/:id" element={<EditProduct />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </main>
       <Footer />

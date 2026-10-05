@@ -82,6 +82,18 @@ export const api = {
   getSellerProducts: () => request("/seller/products"),
   getSellerOrders: () => request("/seller/orders"),
   getSellerStats: () => request("/seller/stats"),
+  getPendingProducts: () => request("/admin/products/pending"),
+
+approveProduct: (id) =>
+  request(`/admin/products/${id}/approve`, {
+    method: "PATCH",
+  }),
+
+rejectProduct: (id, rejectionReason) =>
+  request(`/admin/products/${id}/reject`, {
+    method: "PATCH",
+    body: JSON.stringify({ rejectionReason }),
+  }),
   updateOrderStatus: (orderId, status) =>
     request(`/orders/${orderId}/status`, {
       method: "PATCH",

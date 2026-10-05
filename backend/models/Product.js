@@ -50,6 +50,17 @@ const productSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+      index: true,
+    },
+    rejectionReason: {
+      type: String,
+      default: "",
+      trim: true,
+    },
     city: {
       type: String,
       trim: true,

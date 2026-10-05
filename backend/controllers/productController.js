@@ -9,7 +9,9 @@ import { fileToImageRecord } from "../middleware/upload.js";
 export const getProducts = asyncHandler(async (req, res) => {
   const { search, category, city, minPrice, maxPrice, page = 1, limit = 20 } = req.query;
 
-  const filter = {};
+  const filter = {
+     status: "approved",
+  };
 
   if (search) {
     filter.$text = { $search: search };
@@ -66,6 +68,7 @@ export const getNearbyProducts = asyncHandler(async (req, res) => {
   const radiusMeters = Number(radius) * 1000;
 
   const geoFilter = {
+    status: "approved",
     location: {
       $near: {
         $geometry: { type: "Point", coordinates: [longitude, latitude] },
@@ -111,7 +114,10 @@ export const getProductById = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Invalid product id");
   }
 
-  const product = await Product.findById(req.params.id).populate(
+  const product =  await Product.findOne({
+    _id: req.params.id,
+    status: "approved",
+    }).populate(
     "seller",
     "name storeName storeBio location.city profileImage createdAt"
   );
@@ -157,6 +163,8 @@ export const createProduct = asyncHandler(async (req, res) => {
     stock: stock !== undefined ? Number(stock) : 0,
     images,
     imagePublicIds,
+    status: "pending",
+
     city: city || req.user.location?.city || "",
     location: {
       type: "Point",
@@ -169,7 +177,7 @@ export const createProduct = asyncHandler(async (req, res) => {
     seller: req.user._id,
   });
 
-  res.status(201).json({ success: true, message: "Product created successfully", data: { product } });
+  res.status(201).json({ success: true, message:"Product created successfully and is awaiting admin approval", data: { product } });
 });
 
 // PUT /api/products/:id  (seller only, must own the product)
@@ -179,38 +187,66 @@ export const updateProduct = asyncHandler(async (req, res) => {
   }
 
   const product = await Product.findById(req.params.id);
+
   if (!product) {
     throw new ApiError(404, "Product not found");
   }
+
   if (product.seller.toString() !== req.user._id.toString()) {
     throw new ApiError(403, "You can only edit your own products");
   }
 
-  const editableFields = ["name", "description", "price", "unit", "category", "stock", "city", "deliveryAvailable"];
+  const editableFields = [
+    "name",
+    "description",
+    "price",
+    "unit",
+    "category",
+    "stock",
+    "city",
+    "deliveryAvailable",
+  ];
+
   editableFields.forEach((field) => {
     if (req.body[field] !== undefined) {
-      product[field] = field === "price" || field === "stock" ? Number(req.body[field]) : req.body[field];
+      product[field] =
+        field === "price" || field === "stock"
+          ? Number(req.body[field])
+          : req.body[field];
     }
   });
 
   if (req.body.latitude !== undefined || req.body.longitude !== undefined) {
     product.location.coordinates = [
-      req.body.longitude !== undefined ? Number(req.body.longitude) : product.location.coordinates[0],
-      req.body.latitude !== undefined ? Number(req.body.latitude) : product.location.coordinates[1],
+      req.body.longitude !== undefined
+        ? Number(req.body.longitude)
+        : product.location.coordinates[0],
+
+      req.body.latitude !== undefined
+        ? Number(req.body.latitude)
+        : product.location.coordinates[1],
     ];
   }
 
   if (req.files && req.files.length > 0) {
     const records = req.files.map(fileToImageRecord);
+
     product.images = records.map((r) => r.url);
     product.imagePublicIds = records.map((r) => r.publicId);
   }
 
+  // Any seller edit requires admin re-approval
+  product.status = "pending";
+  product.rejectionReason = "";
+
   await product.save();
 
-  res.json({ success: true, message: "Product updated successfully", data: { product } });
+  res.json({
+    success: true,
+    message: "Product updated and sent for admin approval",
+    data: { product },
+  });
 });
-
 // DELETE /api/products/:id  (seller only, must own the product)
 export const deleteProduct = asyncHandler(async (req, res) => {
   if (!mongoose.isValidObjectId(req.params.id)) {
